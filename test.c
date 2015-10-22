@@ -15,9 +15,28 @@
 #include <string.h>
 #include "libft.h"
 
+int ok = 1;
+
+void    test_strnstr(const char *s1, const char *s2, size_t n)
+{
+    char    *our_res = ft_strnstr(s1, s2, n);
+    char    *lib_res = strnstr(s1, s2, n);
+
+
+    if (!our_res || !lib_res)
+    {
+        if (our_res != lib_res)
+            printf(" > test: %s %s %d\n > expected: %s but got: %s\n", s1, s2, n, lib_res, our_res), ok = 0;
+    }
+    else
+    {
+	    if (strcmp(our_res, lib_res))
+            printf(" > test: %s %s %d\n > expected: %s but got: %s\n", s1, s2, n, lib_res, our_res), ok = 0;
+    }
+}
+
 int		main(void)
 {
-	int ok = 1;
 	printf("Testing ft_atoi:\n");
 	if (atoi("0") != ft_atoi("0")) printf("0\n"), ok = 0;
 	if (atoi("    -42") != ft_atoi("   -42")) printf("-42\n"), ok = 0;
@@ -104,18 +123,18 @@ int		main(void)
     char s11[100] = "hello";
     char s12[100] = "hello";
     char s13[100] = "world, baby!";
-	if (strlcat(s11, s13, 10) != ft_strlcat(s12, s13, 10)) ok = 0;
-    if (strcmp(s11, s12)) ok = 0;
+	if (strlcat(s11, s13, 10) != ft_strlcat(s12, s13, 10)) { printf("wrong return value for n greater than len\n"); ok = 0; }
+    if (strcmp(s11, s12)) { printf("wrong behavior for n greater than len\n"); ok = 0; }
     char s21[100] = "hello";
     char s22[100] = "hello";
     char s23[100] = "world, baby!";
-	if (strlcat(s21, s23, 6) != ft_strlcat(s22, s23, 6)) ok = 0;
-    if (strcmp(s21, s22)) ok = 0;
+	if (strlcat(s21, s23, 6) != ft_strlcat(s22, s23, 6)) { printf("wrong return value for n equal to len\n"); ok = 0; }
+    if (strcmp(s21, s22)) { printf("wrong behavior for n equal to len\n"); ok = 0; }
     char s31[100] = "hello";
     char s32[100] = "hello";
     char s33[100] = "world, baby!";
-	if (strlcat(s31, s33, 2) != ft_strlcat(s32, s33, 2)) ok = 0;
-    if (strcmp(s31, s32)) ok = 0;
+	if (strlcat(s31, s33, 2) != ft_strlcat(s32, s33, 2)) { printf("wrong return value for n less than len\n"); ok = 0; }
+    if (strcmp(s31, s32)) { printf("wrong behavior for n less than len\n"); ok = 0; }
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 
     ok = 1;
@@ -151,15 +170,15 @@ int		main(void)
 	
     ok = 1;
 	printf("Testing ft_strnstr:\n");
-	if (strnstr("abc", "abc", 2) != ft_strnstr("abc", "abc", 2)) printf("abc abc\n"), ok = 0;
-	if (strnstr("", "abc", 1) != ft_strnstr("", "abc", 1)) printf("null abc 1\n"), ok = 0;
-	if (strnstr("", "abc", 0) != ft_strnstr("", "abc", 0)) printf("null abc 0\n"), ok = 0;
-	if (strnstr("", "abc", 3) != ft_strnstr("", "abc", 3)) printf("null abc 3\n"), ok = 0;
-	if (strnstr("", "abc", 4) != ft_strnstr("", "abc", 4)) printf("null abc 4\n"), ok = 0;
-	if (strnstr("asdf", "", 1) != ft_strnstr("asdf", "", 1)) printf("asdf null\n"), ok = 0;
-	if (strnstr("asdf", "", 0) != ft_strnstr("asdf", "", 0)) printf("asdf null\n"), ok = 0;
-	if (strnstr("", "", 1) != ft_strnstr("", "", 1)) printf("asdf null\n"), ok = 0;
-	if (strnstr("", "", 0) != ft_strnstr("", "", 0)) printf("asdf null\n"), ok = 0;
+    test_strnstr("abc", "abc", 2);
+    test_strnstr("", "abc", 1);
+    test_strnstr("", "abc", 0);
+    test_strnstr("", "abc", 3);
+    test_strnstr("", "abc", 4);
+    test_strnstr("asdf", "", 1);
+    test_strnstr("asdf", "", 0);
+    test_strnstr("", "", 1);
+    test_strnstr("", "", 0);
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 	
     ok = 1;
