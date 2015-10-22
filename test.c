@@ -26,53 +26,64 @@ int		main(void)
 	if (atoi("-2147483648") != ft_atoi("-2147483648")) printf("-2147483648\n"), ok = 0;
 	if (atoi("2147483647") != ft_atoi("2147483647")) printf("2147483647\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_isalnum:\n");
 	if (isalnum(0) != ft_isalnum(0)) printf("0\n"), ok = 0;
 	if (isalnum('0') != ft_isalnum('0')) printf("character 0\n"), ok = 0;
 	if (isalnum('z') != ft_isalnum('z')) printf("z\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_isalpha:\n");
 	if (isalpha(0) != ft_isalpha(0)) printf("0\n"), ok = 0;
 	if (isalpha('0') != ft_isalpha('0')) printf("character 0\n"), ok = 0;
 	if (isalpha('z') != ft_isalpha('z')) printf("z\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_isascii:\n");
 	if (isascii(0) != ft_isascii(0)) printf("0\n"), ok = 0;
 	if (isascii('0') != ft_isascii('0')) printf("character 0\n"), ok = 0;
 	if (isascii('z') != ft_isascii('z')) printf("z\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_isdigit:\n");
 	if (isdigit(0) != ft_isdigit(0)) printf("0\n"), ok = 0;
 	if (isdigit('0') != ft_isdigit('0')) printf("character 0\n"), ok = 0;
 	if (isdigit('z') != ft_isdigit('z')) printf("z\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_isprint:\n");
 	if (isprint(0) != ft_isprint(0)) printf("0\n"), ok = 0;
 	if (isprint('0') != ft_isprint('0')) printf("character 0\n"), ok = 0;
 	if (isprint('z') != ft_isprint('z')) printf("z\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strcat:\n");
 	char	s[20] = "abcx\0";
 	printf("%s\n", strcat(s, "abc"));
 	char	d[20] = "abcx\0";
 	printf("%s\n", ft_strcat(d, "abc"));
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strchr:\n");
 	printf("%s\n", strchr("abc", 'b'));
 	printf("%s\n", ft_strchr("abc", 'b'));
-	ok = 1;
+	printf("%s\n", strchr("abc", '\0'));
+	printf("%s\n", ft_strchr("abc", '\0'));
+	
+    ok = 1;
 	printf("Testing ft_strcmp:\n");
 	if (strcmp("abc", "abc") != ft_strcmp("abc", "abc")) printf("abc abc\n"), ok = 0;
 	if (strcmp("", "abc") != ft_strcmp("", "abc")) printf("null abc\n"), ok = 0;
 	if (strcmp("asdf", "") != ft_strcmp("asdf", "")) printf("asdf null\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strcpy:\n");
 	char str[200];
 	char str2[200];
@@ -80,21 +91,41 @@ int		main(void)
 	ft_strcpy(str2, "abcd");
 	if (strcmp(str, str2) != 0) printf("abcd\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strdup:\n");
 	char *strd;
 	strd = ft_strdup("abcd");
 	if (strcmp(strd, "abcd") != 0) printf("abcd\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strlcat:\n");
-	ok = 1;
+    char s11[100] = "hello";
+    char s12[100] = "hello";
+    char s13[100] = "world, baby!";
+	if (strlcat(s11, s13, 10) != ft_strlcat(s12, s13, 10)) ok = 0;
+    if (strcmp(s11, s12)) ok = 0;
+    char s21[100] = "hello";
+    char s22[100] = "hello";
+    char s23[100] = "world, baby!";
+	if (strlcat(s21, s23, 6) != ft_strlcat(s22, s23, 6)) ok = 0;
+    if (strcmp(s21, s22)) ok = 0;
+    char s31[100] = "hello";
+    char s32[100] = "hello";
+    char s33[100] = "world, baby!";
+	if (strlcat(s31, s33, 2) != ft_strlcat(s32, s33, 2)) ok = 0;
+    if (strcmp(s31, s32)) ok = 0;
+	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
+
+    ok = 1;
 	printf("Testing ft_strlen:\n");
 	if (strlen("asdf") != ft_strlen("asdf")) printf("asdf\n"), ok = 0;
 	if (strlen("") != ft_strlen("")) printf("null\n"), ok = 0;
 	if (strlen("asdf   ") != ft_strlen("asdf   ")) printf("asdf space\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strncmp:\n");
 	if (strncmp("abc", "abc", 2) != ft_strncmp("abc", "abc", 2)) printf("abc abc\n"), ok = 0;
 	if (strncmp("", "abc", 1) != ft_strncmp("", "abc", 1)) printf("null abc 1\n"), ok = 0;
@@ -103,7 +134,8 @@ int		main(void)
 	if (strncmp("", "abc", 4) != ft_strncmp("", "abc", 4)) printf("null abc 4\n"), ok = 0;
 	if (strncmp("asdf", "", 1) != ft_strncmp("asdf", "", 1)) printf("asdf null\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	str[0] = '\0';
 	str2[0] = '\0';
 	printf("Testing ft_strncpy:\n");
@@ -116,7 +148,8 @@ int		main(void)
 	ft_strncpy(str2, "abcd",  0);
 	if (strcmp(str, str2) != 0) printf("abcd\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strnstr:\n");
 	if (strnstr("abc", "abc", 2) != ft_strnstr("abc", "abc", 2)) printf("abc abc\n"), ok = 0;
 	if (strnstr("", "abc", 1) != ft_strnstr("", "abc", 1)) printf("null abc 1\n"), ok = 0;
@@ -128,7 +161,8 @@ int		main(void)
 	if (strnstr("", "", 1) != ft_strnstr("", "", 1)) printf("asdf null\n"), ok = 0;
 	if (strnstr("", "", 0) != ft_strnstr("", "", 0)) printf("asdf null\n"), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strrchr:\n");
 	ok = 1;
 	printf("Testing ft_strstr:\n");
