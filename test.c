@@ -6,7 +6,7 @@
 /*   By: vplaton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/21 14:50:01 by vplaton           #+#    #+#             */
-/*   Updated: 2015/10/22 16:26:22 by vplaton          ###   ########.fr       */
+/*   Updated: 2015/10/22 16:53:26 by vplaton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,11 +130,28 @@ int		main(void)
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 	ok = 1;
 	printf("Testing ft_strrchr:\n");
+	printf("%s\n", strrchr("abc", 'b'));
+	printf("%s\n", ft_strrchr("abc", 'b'));
+	printf("%s\n", strrchr("abc", '\0'));
+	printf("%s\n", ft_strrchr("abc", '\0'));
 	ok = 1;
 	printf("Testing ft_strstr:\n");
+	if (strstr("abc", "abc") != ft_strstr("abc", "abc")) printf("abc abc\n"), ok = 0;
+	if (strstr("", "abc") != ft_strstr("", "abc")) printf("null abc\n"), ok = 0;
+	if (strstr("asdf", "") != ft_strstr("asdf", "")) printf("asdf null\n"), ok = 0;
+	if (strstr("asdf", "") != ft_strstr("asdf", "")) printf("asdf null\n"), ok = 0;
+	if (strstr("", "") != ft_strstr("", "")) printf("asdf null\n"), ok = 0;
+	if (strstr("", "") != ft_strstr("", "")) printf("asdf null\n"), ok = 0;
+	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 	ok = 1;
 	printf("Testing ft_tolower:\n");
+	for (int i = -50; i < 500; i++)
+		if (tolower(i) != ft_tolower(i)) printf("%d\n", i), ok = 0;
+	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 	ok = 1;
 	printf("Testing ft_toupper:\n");
+	for (int i = -50; i < 500; i++)
+		if (toupper(i) != ft_toupper(i)) printf("%d\n", i), ok = 0;
+	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
 	return (0);
 }
