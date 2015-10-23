@@ -35,6 +35,24 @@ void    test_strnstr(const char *s1, const char *s2, size_t n)
     }
 }
 
+void    test_strstr(const char *s1, const char *s2)
+{
+    char    *our_res = ft_strstr(s1, s2);
+    char    *lib_res = strstr(s1, s2);
+
+
+    if (!our_res || !lib_res)
+    {
+        if (our_res != lib_res)
+            printf(" > test: %s %s\n > expected: %s but got: %s\n", s1, s2, lib_res, our_res), ok = 0;
+    }
+    else
+    {
+	    if (strcmp(our_res, lib_res))
+            printf(" > test: %s %s\n > expected: %s but got: %s\n", s1, s2, lib_res, our_res), ok = 0;
+    }
+}
+
 int		main(void)
 {
 	printf("Testing ft_atoi:\n");
@@ -187,21 +205,22 @@ int		main(void)
 	printf("%s\n", ft_strrchr("abc", 'b'));
 	printf("%s\n", strrchr("abc", '\0'));
 	printf("%s\n", ft_strrchr("abc", '\0'));
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_strstr:\n");
-	if (strstr("abc", "abc") != ft_strstr("abc", "abc")) printf("abc abc\n"), ok = 0;
-	if (strstr("", "abc") != ft_strstr("", "abc")) printf("null abc\n"), ok = 0;
-	if (strstr("asdf", "") != ft_strstr("asdf", "")) printf("asdf null\n"), ok = 0;
-	if (strstr("asdf", "") != ft_strstr("asdf", "")) printf("asdf null\n"), ok = 0;
-	if (strstr("", "") != ft_strstr("", "")) printf("asdf null\n"), ok = 0;
-	if (strstr("", "") != ft_strstr("", "")) printf("asdf null\n"), ok = 0;
+    test_strstr("abc", "abc");
+    test_strstr("", "abc");
+    test_strstr("asdf", "");
+    test_strstr("", "");
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_tolower:\n");
 	for (int i = -50; i < 500; i++)
 		if (tolower(i) != ft_tolower(i)) printf("%d\n", i), ok = 0;
 	if (ok == 1) printf("Succes!\n"); else printf("Failure!\n");
-	ok = 1;
+	
+    ok = 1;
 	printf("Testing ft_toupper:\n");
 	for (int i = -50; i < 500; i++)
 		if (toupper(i) != ft_toupper(i)) printf("%d\n", i), ok = 0;
